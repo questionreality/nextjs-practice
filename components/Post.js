@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import DataContext from "../util/Context";
 import useSWR from "swr";
+import Image from "next/image";
 
 const fetchUserData = async (userId) =>
   await fetch(
@@ -23,8 +24,19 @@ export default function Post({ postId }) {
   const { title, body } = post;
   return (
     <div>
-      {" "}
-      {data.name} {catchPhrase} {title} {body}
+      <div>
+        <div className="relative">
+          <Image src={"/default.png"} layout="fill" objectFit="cover" />
+        </div>
+        <div>
+          <span>{name}</span>
+          <span>{catchPhrase}</span>
+        </div>
+      </div>
+      <div>
+        <h1>{title}</h1>
+        <p>{body}</p>
+      </div>
     </div>
   );
 }

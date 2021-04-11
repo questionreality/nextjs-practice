@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import DataContext from "../util/Context";
 import Post from "../components/Post";
 import Modal from "react-modal";
-import styles from "../styles/Home.module.css";
 
 const customStyles = {
   content: {
@@ -33,19 +32,24 @@ export default function Home() {
     router.push("/");
   };
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Assignment</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         {posts?.map((post) => {
           console.log(post);
           return (
-            <div key={post.id}>
+            <div
+              key={post.id}
+              className="bg-gray-100 m-4 py-4 rounded-md shadow-md"
+            >
               <Link href={`/?id=${post.id}`} as={`/posts/${post.id}`}>
-                <a>{post.title}</a>
+                <a className="text-primary-900 px-6 font-medium inline-block">
+                  {post.title}
+                </a>
               </Link>
             </div>
           );
@@ -54,10 +58,15 @@ export default function Home() {
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        // className="mx-auto my-auto "
       >
         <Post postId={router.query.id} />
-        <button className={styles.button}>X</button>
+        <button
+          onClick={closeModal}
+          className="absolute top-1 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-400 text-lg focus:outline-none"
+        >
+          &#x02717;
+        </button>
       </Modal>
     </div>
   );

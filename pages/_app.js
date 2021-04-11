@@ -1,5 +1,8 @@
-import "../styles/globals.css";
 import DataContext from "../util/Context";
+import "tailwindcss/tailwind.css";
+import "../tailwind-before.css";
+import "../index.css";
+import "../tailwind-after.css";
 
 function MyApp(props) {
   console.log(props);
