@@ -35,7 +35,7 @@ export default function Home() {
     router.push("/");
   };
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative ">
       <Head>
         <title>Assignment</title>
         <link rel="icon" href="/favicon.ico" />
@@ -44,16 +44,18 @@ export default function Home() {
         {posts?.map((post) => {
           console.log(post);
           return (
-            <div
-              key={post.id}
-              className="bg-gray-100 m-4 py-4 rounded-md shadow-md"
-            >
-              <Link href={`/?id=${post.id}`} as={`/posts/${post.id}`}>
-                <a className="text-primary-900 px-6 font-medium inline-block">
-                  {post.title}
-                </a>
-              </Link>
-            </div>
+            <Link href={`/?id=${post.id}`} as={`/posts/${post.id}`}>
+              <a>
+                <div
+                  key={post.id}
+                  className="bg-gray-100 m-4 md:m-6 py-4 rounded-md shadow-md"
+                >
+                  <span className="text-primary-900 px-6 font-medium inline-block">
+                    {post.title}
+                  </span>
+                </div>
+              </a>
+            </Link>
           );
         })}
       </main>
@@ -61,12 +63,12 @@ export default function Home() {
         isOpen={modalOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        className="h-screen bg-primary-100 md:w-1/2  mx-auto relative md:mt-20 sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm p-4 overflow-hidden transition-all duration-300"
+        className="h-screen w-screen bg-primary-100 sm:w-3/4 mx-auto  relative sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm"
       >
         <Post postId={router.query.id} />
         <button
           onClick={closeModal}
-          className="absolute top-0 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
+          className="absolute top-3 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
         >
           &#x02717;
         </button>
