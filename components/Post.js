@@ -9,12 +9,22 @@ const fetchUserData = async (userId) =>
 
 export default function Post({ postId }) {
   const posts = useContext(DataContext);
-  const userId = posts.filter((post) => String(post.id) === postId)[0].userId;
+  const post = posts.filter((post) => String(post.id) === postId)[0];
+  const userId = post.userId;
   const { data, error } = useSWR(userId, fetchUserData);
   console.log(posts);
 
   if (error) return <div>Please try again</div>;
   if (!data) return <div>Loading...</div>;
-  console.log(data);
-  return <div>Hi {data.name}</div>;
+  const {
+    name,
+    company: { catchPhrase },
+  } = data;
+  const { title, body } = post;
+  return (
+    <div>
+      {" "}
+      {data.name} {catchPhrase} {title} {body}
+    </div>
+  );
 }

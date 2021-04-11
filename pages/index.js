@@ -5,8 +5,19 @@ import { useRouter } from "next/router";
 import DataContext from "../util/Context";
 import Post from "../components/Post";
 import Modal from "react-modal";
-
 import styles from "../styles/Home.module.css";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+  layout: {},
+};
 
 Modal.setAppElement("#__next");
 
@@ -40,8 +51,13 @@ export default function Home() {
           );
         })}
       </main>
-      <Modal isOpen={modalOpen} onRequestClose={closeModal}>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
         <Post postId={router.query.id} />
+        <button className={styles.button}>X</button>
       </Modal>
     </div>
   );
