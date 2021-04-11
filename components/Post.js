@@ -25,17 +25,21 @@ export default function Post({ postId }) {
   return (
     <div>
       <div>
-        <div className="relative">
-          <Image src={"/default.png"} layout="fill" objectFit="cover" />
-        </div>
-        <div>
-          <span>{name}</span>
-          <span>{catchPhrase}</span>
-        </div>
+        <h1 className="font-medium text-gray-800 text-lg">{title}</h1>
+        <p className="text-gray-700 mt-2">{body}</p>
       </div>
       <div>
-        <h1>{title}</h1>
-        <p>{body}</p>
+        {/* <div className="relative w-5 h-5 object-cover">
+          <Image src={"/default.png"} layout="fill" objectFit="cover" />
+        </div> */}
+
+        <span className="text-md  mt-4 border-b-4 border-primary-500 inline-block ">
+          {name}
+        </span>
+
+        <span className="text-gray-500 block mt-2 text-sm">
+          "{catchPhrase}"
+        </span>
       </div>
     </div>
   );

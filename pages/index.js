@@ -7,15 +7,18 @@ import Post from "../components/Post";
 import Modal from "react-modal";
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+  // content: {
+  //   top: "50%",
+  //   left: "50%",
+  //   right: "auto",
+  //   bottom: "auto",
+  //   marginRight: "-50%",
+  //   transform: "translate(-50%, -50%)",
+  // },
+  layout: {
+    backgroundColor: "#2f6e99",
+    opacity: 0.5,
   },
-  layout: {},
 };
 
 Modal.setAppElement("#__next");
@@ -32,12 +35,11 @@ export default function Home() {
     router.push("/");
   };
   return (
-    <div>
+    <div className="relative h-screen w-screen">
       <Head>
         <title>Assignment</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
         {posts?.map((post) => {
           console.log(post);
@@ -58,12 +60,13 @@ export default function Home() {
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
-        // className="mx-auto my-auto "
+        style={customStyles}
+        className="h-screen bg-primary-100 md:w-1/2  mx-auto relative md:mt-20 sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm p-4 overflow-hidden transition-all duration-300"
       >
         <Post postId={router.query.id} />
         <button
           onClick={closeModal}
-          className="absolute top-1 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-400 text-lg focus:outline-none"
+          className="absolute top-0 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
         >
           &#x02717;
         </button>
