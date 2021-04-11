@@ -29,6 +29,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (router.query.id) setModalOpen(true);
+    else setModalOpen(false);
   }, [router.query]);
   const closeModal = () => {
     setModalOpen(false);
@@ -59,20 +60,22 @@ export default function Home() {
           );
         })}
       </main>
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        className="h-screen w-screen bg-primary-100 sm:w-3/4 mx-auto  relative sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm"
-      >
-        <Post postId={router.query.id} />
-        <button
-          onClick={closeModal}
-          className="absolute top-3 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
+      {modalOpen && (
+        <Modal
+          isOpen={modalOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          className="h-screen w-screen bg-primary-100 sm:w-3/4 mx-auto  relative sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm"
         >
-          &#x02717;
-        </button>
-      </Modal>
+          <Post postId={router.query.id} />
+          <button
+            onClick={closeModal}
+            className="absolute top-3 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
+          >
+            &#x02717;
+          </button>
+        </Modal>
+      )}
     </div>
   );
 }

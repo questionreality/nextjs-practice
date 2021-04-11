@@ -10,6 +10,7 @@ const fetchUserData = async (userId) =>
   ).then((response) => response.json());
 
 export default function Post({ postId }) {
+  if (!postId) return <></>;
   const posts = useContext(DataContext);
   const post = posts.filter((post) => String(post.id) === postId)[0];
   const userId = post.userId;
