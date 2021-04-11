@@ -6,37 +6,15 @@ import DataContext from "../util/Context";
 import Post from "../components/Post";
 import Modal from "react-modal";
 
-// const customStyles = {
-//   // content: {
-//   //   top: "50%",
-//   //   left: "50%",
-//   //   right: "auto",
-//   //   bottom: "auto",
-//   //   marginRight: "-50%",
-//   //   transform: "translate(-50%, -50%)",
-//   // },
-//   layout: {
-//     backgroundColor: "#2f6e99",
-//     opacity: 0.5,
-//   },
-// };
-
 Modal.setAppElement("#__next");
+//hooking to the DOM element
 
 export default function Home() {
-  // const [modalOpen, setModalOpen] = useState(false);
   const posts = useContext(DataContext);
   const router = useRouter();
-  // useEffect(() => {
-  //   if (!!router.query.id) setModalOpen(true);
-  //   else setModalOpen(false);
-  // }, [router.query]);
-  // const closeModal = () => {
-  //   router.push("/");
-  //   setModalOpen(false);
-  // };
+
   return (
-    <div className="relative ">
+    <>
       <Head>
         <title>Assignment</title>
         <link rel="icon" href="/favicon.ico" />
@@ -49,7 +27,7 @@ export default function Home() {
               <a>
                 <div
                   key={post.id}
-                  className="bg-gray-100 m-4 md:m-6 py-4 rounded-md shadow-md"
+                  className="bg-gray-100 m-4 py-4 rounded-md shadow-md md:m-6"
                 >
                   <span className="text-primary-900 px-6 font-medium inline-block">
                     {post.title}
@@ -62,22 +40,20 @@ export default function Home() {
       </main>
       {
         <Modal
-          // isOpen={modalOpen}
-          // onRequestClose={closeModal}
-          // style={customStyles}
           isOpen={!!router.query.id}
           onRequestClose={() => router.push("/")}
-          className="h-screen w-screen bg-primary-100 sm:w-3/4 mx-auto  relative sm:mt-10  sm:h-auto  outline-none shadow-md rounded-sm"
+          className="h-screen w-screen bg-primary-100 outline-none shadow-md mx-auto rounded-sm sm:w-3/4 relative sm:mt-10  sm:h-auto "
         >
           <Post postId={router.query.id} />
           <button
             onClick={() => router.push("/")}
-            className="absolute top-3 right-1 outline-none transition-all duration-300 text-gray-600 hover:text-red-700 text-lg focus:outline-none"
+            className="absolute top-3 right-1 outline-none  text-lg transition-all duration-300 text-gray-600 hover:text-red-700  focus:outline-none"
+            //positioning the button in top right hand corner
           >
             &#x02717;
           </button>
         </Modal>
       }
-    </div>
+    </>
   );
 }
